@@ -182,8 +182,8 @@ public class initUI extends JFrame {
   //Return the ImageIcon for JLabel (download the poster)
   private ImageIcon downloadPoster(String imageUrl, String fileName) {
 
-    //if imageUrl is null then there is nothing to download
-    if (imageUrl == (null)) {
+    //if imageUrl is null or N/A then there is nothing to download
+    if (imageUrl == (null) || imageUrl.equals("N/A")) {
       return null;
     }
 
@@ -411,7 +411,7 @@ public class initUI extends JFrame {
       //Creation of JLabel poster
       JLabel poster = new JLabel();
 
-      //Sets the image into the poster label and the size if there is one
+      //Sets the image into the poster label and sets the size if there is one
       if (downloadPoster(getInformation(queryOMDB, modelOMDB, "poster"), "poster") == null) {
         poster.setText("No poster avaiable");
       } else {
@@ -436,11 +436,15 @@ public class initUI extends JFrame {
       poster.addMouseListener(new MouseAdapter() {
         public void mouseClicked(MouseEvent e) {
           URI link = null;
-          try {
-            link = new URI(conveyLink);
-            openBrowser(link);
-          } catch (URISyntaxException ex) {
-            ex.printStackTrace();
+
+          //conveyLink is null so there is no link to open in browser
+          if (conveyLink != null) {
+            try {
+              link = new URI(conveyLink);
+              openBrowser(link);
+            } catch (URISyntaxException ex) {
+              ex.printStackTrace();
+            }
           }
         }
       });
@@ -503,17 +507,14 @@ public class initUI extends JFrame {
             title.setText(listTitle.getItem(row));
             conveyLink = getConvey(strVecNameConvey, listTitle.getItem(row));
 
-            //Updates poster's image or not
-            if (listPoster.getItem(row).contains("N/A")) {
-              poster.setIcon(null);
+            //Updates poster's image if there is a link in the rdf file
+            poster.setText(null);
+            if (listPoster.getItem(row).contains("N/A") || downloadPoster(listPoster.getItem(row), "updatedPoster" + row) == null) {
               poster.setText("No poster avaiable");
+              poster.setIcon(null);
             } else {
-              poster.setText(null);
-              if (downloadPoster(listPoster.getItem(row), "updatedPoster" + row) == null) {
-                poster.setText("No poster avaiable");
-              } else {
-                poster.setIcon(downloadPoster(listPoster.getItem(row), "updatedPoster" + row));
-              }
+              //Everything is fine so shows the poster
+              poster.setIcon(downloadPoster(listPoster.getItem(row), "updatedPoster" + row));
             }
 
             //Repaints the UI (do not remove)
@@ -521,18 +522,6 @@ public class initUI extends JFrame {
           }
         }
       });
-
-      //Uncomment to see the full query in terminal
-      /*
-      QueryExecution queryEx = QueryExecutionFactory.create(queryOMDB, modelOMDB);
-      ResultSet results = queryEx.execSelect();
-
-      //Show query results formatted
-      ResultSetFormatter.out(System.out, results, queryOMDB);
-
-      //Free up resources used running the query
-      queryEx.close();
-      */
 
       this.repaint();
     });
@@ -542,9 +531,13 @@ public class initUI extends JFrame {
     setVisible(true);
 
     setResizable(false);
+
     setTitle("Movie Recommender");
+
     setSize(320, 450);
+
     setLocationRelativeTo(null);
+
     setDefaultCloseOperation(EXIT_ON_CLOSE);
   }
 }
