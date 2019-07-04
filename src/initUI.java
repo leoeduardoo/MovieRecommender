@@ -256,49 +256,57 @@ public class initUI extends JFrame {
       case 0:
         return
             "PREFIX topMovies: <http://www.semanticweb.org/manohara/ontologies/2016/9/untitled-ontology-10#> " +
-                "SELECT ?title ?actor ?director ?genre ?poster " +
+                "SELECT ?title ?actor ?director ?genre ?poster ?year ?language " +
                 "WHERE {" +
                 "      ?resource topMovies:FallsUnderGenre ?genre . " +
                 "      ?resource topMovies:HasTitle ?title . " +
                 "      ?resource topMovies:HasDirector ?director . " +
                 "      ?resource topMovies:HasPoster ?poster . " +
                 "      ?resource topMovies:HasActor ?actor . " +
+                "      ?resource topMovies:InYear ?year . " +
+                "      ?resource topMovies:Language ?language . " +
                 "      filter contains(?actor, " + "\"" + parameter + "\"" + ")" +
                 "      }";
       case 1:
         return
             "PREFIX topMovies: <http://www.semanticweb.org/manohara/ontologies/2016/9/untitled-ontology-10#> " +
-                "SELECT ?title ?actor ?director ?genre ?poster " +
+                "SELECT ?title ?actor ?director ?genre ?poster ?year ?language " +
                 "WHERE {" +
                 "      ?resource topMovies:FallsUnderGenre ?genre . " +
                 "      ?resource topMovies:HasTitle ?title . " +
                 "      ?resource topMovies:HasDirector ?director . " +
                 "      ?resource topMovies:HasPoster ?poster . " +
                 "      ?resource topMovies:HasActor ?actor . " +
+                "      ?resource topMovies:InYear ?year . " +
+                "      ?resource topMovies:Language ?language . " +
                 "      filter contains(?director, " + "\"" + parameter + "\"" + ")" +
                 "      }";
       case 2:
         return
             "PREFIX topMovies: <http://www.semanticweb.org/manohara/ontologies/2016/9/untitled-ontology-10#> " +
-                "SELECT ?title ?actor ?director ?genre ?poster " +
+                "SELECT ?title ?actor ?director ?genre ?poster ?year ?language " +
                 "WHERE {" +
                 "      ?resource topMovies:FallsUnderGenre ?genre . " +
                 "      ?resource topMovies:HasTitle ?title . " +
                 "      ?resource topMovies:HasDirector ?director . " +
                 "      ?resource topMovies:HasPoster ?poster . " +
                 "      ?resource topMovies:HasActor ?actor . " +
+                "      ?resource topMovies:InYear ?year . " +
+                "      ?resource topMovies:Language ?language . " +
                 "      filter contains(?genre, " + "\"" + parameter + "\"" + ")" +
                 "      }";
       case 3:
         return
             "PREFIX topMovies: <http://www.semanticweb.org/manohara/ontologies/2016/9/untitled-ontology-10#> " +
-                "SELECT ?title ?actor ?director ?genre ?poster " +
+                "SELECT ?title ?actor ?director ?genre ?poster ?year ?language " +
                 "WHERE {" +
                 "      ?resource topMovies:FallsUnderGenre ?genre . " +
                 "      ?resource topMovies:HasTitle ?title . " +
                 "      ?resource topMovies:HasDirector ?director . " +
                 "      ?resource topMovies:HasPoster ?poster . " +
                 "      ?resource topMovies:HasActor ?actor . " +
+                "      ?resource topMovies:InYear ?year . " +
+                "      ?resource topMovies:Language ?language . " +
                 "      filter contains(?title, " + "\"" + parameter + "\"" + ")" +
                 "      }";
 
@@ -370,6 +378,9 @@ public class initUI extends JFrame {
     //Creation of JButton Go
     JButton goButton = new JButton("Go");
 
+    //Creation of the Box information
+    Box information = Box.createVerticalBox();
+
     //Event when combo is clicked
     searchCombo.addActionListener((ActionEvent event) -> {
 
@@ -380,7 +391,7 @@ public class initUI extends JFrame {
       updateLabel(inputLabel, searchCombo.getSelectedIndex());
 
       //Creates components layouts and update the JFrame
-      createLayout(inputLabel, this, 200, 50, 10, 65);
+      createLayout(inputLabel, this, 250, 50, 10, 65);
       createLayout(inputTextField, this, 150, 20, 5, 105);
       createLayout(goButton, this, 100, 30, 150, 101);
 
@@ -426,6 +437,36 @@ public class initUI extends JFrame {
       title.setFont(new Font("Courier New", Font.ITALIC, 13));
       title.setForeground(Color.GRAY);
       createLayout(title, this, 150, 50, 5, 125);
+
+      //Creation of the JLabel year and insertion in the Box information
+      JLabel year = new JLabel("<html>Year: " + getInformation(queryOMDB, modelOMDB, "year") + "</html>");
+      year.setSize(250, 50);
+      year.setFont(new Font("Courier New", Font.ITALIC, 13));
+      information.add(year);
+
+      //Creation of the JLabel actors and insertion in the Box information
+      JLabel actors = new JLabel("<html>Actors: " + getInformation(queryOMDB, modelOMDB, "actor") + "</html>");
+      actors.setSize(250, 50);
+      actors.setFont(new Font("Courier New", Font.ITALIC, 13));
+      information.add(actors);
+
+      //Creation of the JLabel director and insertion in the Box information
+      JLabel director = new JLabel("<html>Director: " + getInformation(queryOMDB, modelOMDB, "director") + "</html>");
+      director.setSize(250, 50);
+      director.setFont(new Font("Courier New", Font.ITALIC, 13));
+      information.add(director);
+
+      //Creation of the JLabel genre and insertion in the Box information
+      JLabel genre = new JLabel("<html>Genre: " + getInformation(queryOMDB, modelOMDB, "genre") + "</html>");
+      genre.setSize(250, 50);
+      genre.setFont(new Font("Courier New", Font.ITALIC, 13));
+      information.add(genre);
+
+      //Creation of the JLabel language and insertion in the Box information
+      JLabel language = new JLabel("<html>Language: " + getInformation(queryOMDB, modelOMDB, "language") + "</html>");
+      language.setSize(250, 50);
+      language.setFont(new Font("Courier New", Font.ITALIC, 13));
+      information.add(language);
 
       //Creation of panel to insert the poster image
       JPanel panelImage = new JPanel();
@@ -494,6 +535,11 @@ public class initUI extends JFrame {
           int col = table.columnAtPoint(evt.getPoint());
           List listTitle = recommendationList(queryOMDBTable, modelOMDBTable, "title");
           List listPoster = recommendationList(queryOMDBTable, modelOMDBTable, "poster");
+          List listYear = recommendationList(queryOMDBTable, modelOMDBTable, "year");
+          List listActor = recommendationList(queryOMDBTable, modelOMDBTable, "actor");
+          List listDirector = recommendationList(queryOMDBTable, modelOMDBTable, "director");
+          List listGenre = recommendationList(queryOMDBTable, modelOMDBTable, "genre");
+          List listLanguage = recommendationList(queryOMDBTable, modelOMDBTable, "language");
 
           //Build and mount the query of NYTIMES to get all data
           Query queryNYTIMES = QueryFactory.create(buildQueryNYTIMESALL());
@@ -503,8 +549,15 @@ public class initUI extends JFrame {
 
           if (row >= 0 && col >= 0) {
 
-            //Updates title's label to the movie's name on the row clicked
+            //Updates the labels according to the movie's name on the row clicked
+            year.setText("<html>Year: " + listYear.getItem(row) + "</html>");
+            actors.setText("<html>Actor(s): " + listActor.getItem(row) + "</html>");
+            director.setText("<html>Director(s): " + listDirector.getItem(row) + "</html>");
+            genre.setText("<html>Genre(s): " + listGenre.getItem(row) + "</html>");
+            language.setText("<html>Language(s): " + listLanguage.getItem(row) + "</html>");
             title.setText(listTitle.getItem(row));
+
+            //Gets the conveyLink
             conveyLink = getConvey(strVecNameConvey, listTitle.getItem(row));
 
             //Updates poster's image if there is a link in the rdf file
@@ -523,6 +576,11 @@ public class initUI extends JFrame {
         }
       });
 
+      //Bordering and insertion in the Frame of the information Box
+      information.setBorder(BorderFactory.createTitledBorder("Information"));
+
+      createLayout(information, this, 315, 140, 5, 385);
+
       this.repaint();
     });
 
@@ -534,7 +592,7 @@ public class initUI extends JFrame {
 
     setTitle("Movie Recommender");
 
-    setSize(320, 450);
+    setSize(320, 550);
 
     setLocationRelativeTo(null);
 
