@@ -1,0 +1,16 @@
+\babel@toc {brazil}{}
+\babel@toc {brazil}{}
+\contentsline {figure}{\numberline {1}{\ignorespaces Etapas da minera\IeC {\c c}\IeC {\~a}o de dados.\relax }}{9}{figure.caption.3}
+\contentsline {figure}{\numberline {2}{\ignorespaces Tarefas de minera\IeC {\c c}\IeC {\~a}o de dados.\relax }}{14}{figure.caption.8}
+\contentsline {figure}{\numberline {3}{\ignorespaces \IeC {\'A}rvore gerada pelo J48 (C4.5) na ferramenta Weka utilizando o conjunto de dados da Tabela~\ref {base_weather}.\relax }}{23}{figure.caption.14}
+\contentsline {figure}{\numberline {4}{\ignorespaces Caminho a ser percorrido para se classificar a nova inst\IeC {\^a}ncia.\relax }}{24}{figure.caption.15}
+\contentsline {figure}{\numberline {5}{\ignorespaces Matriz de semelhan\IeC {\c c}a da base Weather(Tabela~\ref {base_weather} usando SMC.)\relax }}{40}{figure.caption.19}
+\contentsline {figure}{\numberline {6}{\ignorespaces Matriz de similaridade da Figura~\ref {fig:matrizoriginal} atualizada ap\IeC {\'o}s a primeira itera\IeC {\c c}\IeC {\~a}o\relax }}{41}{figure.caption.20}
+\contentsline {figure}{\numberline {7}{\ignorespaces Matriz de similaridade da Figura~\ref {fig:matrizoriginal} atualizada ap\IeC {\'o}s a segunda itera\IeC {\c c}\IeC {\~a}o\relax }}{42}{figure.caption.21}
+\contentsline {figure}{\numberline {8}{\ignorespaces Dendrograma extra\IeC {\'\i }do do Single Linkage usando Base Weather.\relax }}{43}{figure.caption.22}
+\contentsline {figure}{\numberline {9}{\ignorespaces Proximidade entre os clusters usando Equa\IeC {\c c}\IeC {\~a}o~\ref {eq:Ccluster}.\relax }}{44}{figure.caption.23}
+\contentsline {figure}{\numberline {10}{\ignorespaces Dendrograma extra\IeC {\'\i }do do Complete Linkage usando Base Weather(Tabela~\ref {base_weather}).\relax }}{45}{figure.caption.24}
+\contentsline {figure}{\numberline {11}{\ignorespaces Diagrama de Venn para Complete Linkage da Base Weather(Tabela~\ref {base_weather}).\relax }}{45}{figure.caption.25}
+\contentsline {figure}{\numberline {12}{\ignorespaces Proximidade entre os clusters usando Equa\IeC {\c c}\IeC {\~a}o~\ref {eq:Alink_firstite}.\relax }}{47}{figure.caption.26}
+\contentsline {figure}{\numberline {13}{\ignorespaces Dendrograma extra\IeC {\'\i }do do Averege Linkage usando Base Weather(Tabela~\ref {base_weather})\relax }}{48}{figure.caption.27}
+\contentsline {figure}{\numberline {14}{\ignorespaces M\IeC {\'e}todo Elbow para busca do melhor K \relax }}{49}{figure.caption.29}

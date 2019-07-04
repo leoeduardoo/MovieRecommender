@@ -445,25 +445,25 @@ public class initUI extends JFrame {
       information.add(year);
 
       //Creation of the JLabel actors and insertion in the Box information
-      JLabel actors = new JLabel("<html>Actors: " + getInformation(queryOMDB, modelOMDB, "actor") + "</html>");
+      JLabel actors = new JLabel("<html>Actor(s): " + getInformation(queryOMDB, modelOMDB, "actor") + "</html>");
       actors.setSize(250, 50);
       actors.setFont(new Font("Courier New", Font.ITALIC, 13));
       information.add(actors);
 
       //Creation of the JLabel director and insertion in the Box information
-      JLabel director = new JLabel("<html>Director: " + getInformation(queryOMDB, modelOMDB, "director") + "</html>");
+      JLabel director = new JLabel("<html>Director(s): " + getInformation(queryOMDB, modelOMDB, "director") + "</html>");
       director.setSize(250, 50);
       director.setFont(new Font("Courier New", Font.ITALIC, 13));
       information.add(director);
 
       //Creation of the JLabel genre and insertion in the Box information
-      JLabel genre = new JLabel("<html>Genre: " + getInformation(queryOMDB, modelOMDB, "genre") + "</html>");
+      JLabel genre = new JLabel("<html>Genre(s): " + getInformation(queryOMDB, modelOMDB, "genre") + "</html>");
       genre.setSize(250, 50);
       genre.setFont(new Font("Courier New", Font.ITALIC, 13));
       information.add(genre);
 
       //Creation of the JLabel language and insertion in the Box information
-      JLabel language = new JLabel("<html>Language: " + getInformation(queryOMDB, modelOMDB, "language") + "</html>");
+      JLabel language = new JLabel("<html>Language(s): " + getInformation(queryOMDB, modelOMDB, "language") + "</html>");
       language.setSize(250, 50);
       language.setFont(new Font("Courier New", Font.ITALIC, 13));
       information.add(language);
