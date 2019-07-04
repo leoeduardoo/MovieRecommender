@@ -1,0 +1,322 @@
+\documentclass[
+% -- opções da classe memoir --
+12pt,				% tamanho da fonte
+openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+oneside,			% para impressão em recto e verso. Oposto a oneside
+a4paper,			% tamanho do papel. 
+% -- opções da classe abntex2 --
+%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+% -- opções do pacote babel --
+english,			% idioma adicional para hifenização
+brazil				% o último idioma é o principal do documento
+]{abntex2}
+
+% ---
+% Pacotes acrescentados
+% ---
+%\usepackage[portuguese, ruled, linesnumbered]{algorithm2e}
+%\usepackage{algorithmic}
+
+% ---
+% Pacotes básicos 
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{lastpage}			% Usado pela Ficha catalográfica
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{url}				% Citar URLs
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\usepackage{scalefnt}
+% ---
+
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+\usepackage{amssymb}			% para uso de símbolos matemáticos
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+
+%VERONICA/ADIÇÃO/INICIO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Pacotes adicionais Wal/Veronica
+%%%Para incluir um pdf
+\usepackage[final]{pdfpages}
+%\usepackage{lscape}
+%\usepackage{pdflscape}
+
+\usepackage{amsmath}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{etoolbox}
+
+%https://tex.stackexchange.com/questions/230497/change-name-of-algorithm
+\makeatletter
+\newenvironment{algoritmo}[1][htb]{%
+	\renewcommand{\ALG@name}{Algoritmo}% Update algorithm name
+	\begin{algorithm}[#1]%
+	}{\end{algorithm}}
+\makeatother
+
+%https://tex.stackexchange.com/questions/292815/how-can-i-create-vertical-lines-indentation-in-algorithm-pseudo-code-correctly-w/292838
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+% start with some helper code
+% This is the vertical rule that is inserted
+\newcommand*{\algrule}[1][\algorithmicindent]{%
+	\makebox[#1][l]{%
+		\hspace*{.2em}% <------------- This is where the rule starts from
+		\vrule height .75\baselineskip depth .25\baselineskip
+	}
+}
+
+\newcount\ALG@printindent@tempcnta
+\def\ALG@printindent{%
+	\ifnum \theALG@nested>0% is there anything to print
+	\ifx\ALG@text\ALG@x@notext% is this an end group without any text?
+	% do nothing
+	\else
+	\unskip
+	% draw a rule for each indent level
+	\ALG@printindent@tempcnta=1
+	\loop
+	\algrule[\csname ALG@ind@\the\ALG@printindent@tempcnta\endcsname]%
+	\advance \ALG@printindent@tempcnta 1
+	\ifnum \ALG@printindent@tempcnta<\numexpr\theALG@nested+1\relax
+	\repeat
+	\fi
+	\fi
+}
+% the following line injects our new indent handling code in place of the default spacing
+\patchcmd{\ALG@doentity}{\noindent\hskip\ALG@tlm}{\ALG@printindent}{}{\errmessage{failed to patch}}
+\patchcmd{\ALG@doentity}{\item[]\nointerlineskip}{}{}{} % no spurious vertical space
+% end vertical rule patch for algorithmicx
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%https://github.com/filipesaraiva/algorithmic-portuguese
+%http://linorg.usp.br/CTAN/macros/latex/contrib/algorithms/algorithms.pdf
+\input{algorithmic-portuguese}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%VERONICA/ADIÇÃO/FIM
+
+% Pacotes adicionais Wal
+\usepackage{subfig}  %para exibir figuras lado a lado
+\usepackage{listings} % Para inclusao de codigos fontes
+\usepackage{color}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{ %
+	backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+	basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+	breaklines=true,                 % sets automatic line breaking
+	captionpos=t,                    % sets the caption-position to bottom
+	commentstyle=\color{mygreen},    % comment style
+	deletekeywords={...},            % if you want to delete keywords from the given language
+	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+	extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+	frame=single,	                 % adds a frame around the code
+	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+	keywordstyle=\color{blue},       % keyword style
+	language=Octave,                 % the language of the code
+	otherkeywords={*,...},           % if you want to add more keywords to the set
+	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+	numbersep=5pt,                   % how far the line-numbers are from the code
+	numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+	rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+	showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+	showstringspaces=false,          % underline spaces within strings only
+	showtabs=false,                  % show tabs within strings adding particular underscores
+	stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+	stringstyle=\color{mymauve},     % string literal style
+	tabsize=2,	                   	 % sets default tabsize to 2 spaces
+	title=\lstname,                  % show the filename of files included with \lstinputlisting; also try caption instead of title
+	numberbychapter=false
+}
+
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+\hyphenation{a-di-cio-nal-men-te}
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+	Nenhuma citação no texto.%
+	\or
+	Citado na página #2.%
+	\else
+	Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+%-----
+%Adaptações do formato ABNT para UNESP
+\addto\captionsbrazil{
+	\renewcommand{\listfigurename}{Lista de Figuras}
+	\renewcommand{\listtablename}{Lista de Tabelas}
+	\renewcommand{\listadesiglasname}{Lista de Abreviaturas e Siglas}
+	%\renewcommand{\folhadeaprovacaoname}{Folha de Aprovação}
+	\renewcommand{\listadesimbolosname}{Lista de Símbolos}
+}
+%-----
+
+%Comandos para padronização - Wal
+\newcommand{\suporte}{\textit{suporte}}
+\newcommand{\confianca}{\textit{confiança}}
+\newcommand{\itemset}{\textit{itemset}}
+\newcommand{\itemsets}{\textit{itemsets}}
+\newcommand{\kitemset}{\textit{k-itemset}}
+\newcommand{\kitemsets}{\textit{k-itemsets}}
+\newcommand{\nitemset}[1]{\textit{#1-itemset}}
+\newcommand{\nitemsets}[1]{\textit{#1-itemsets}}
+\newcommand{\apriori}{\textit{Apriori}}
+\newcommand{\cl}{\textit{Clustering}}
+\newcommand{\sky}{\textit{Sky}}
+%\newcommand{\ABNTEXfontereduzidaTiny}{\tiny}
+%\newcommand{\ABNTEXfontereduzidaScriptsize}{\scriptsize}
+%\newcommand{\ABNTEXfontereduzidaSmall}{\small}
+
+
+\include{metadados}
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+	%pagebackref=true,
+	pdftitle={\@title}, 
+	pdfauthor={\@author},
+	pdfsubject={\imprimirpreambulo},
+	pdfcreator={regras de associação},
+	pdfkeywords={mineração de dados}{inciacao cientifica}{unesp}, 
+	colorlinks=false,       		% false: boxed links; true: colored links
+	linkcolor=blue,          	% color of internal links
+	citecolor=blue,        		% color of links to bibliography
+	filecolor=magenta,      		% color of file links
+	urlcolor=blue,
+	bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+	
+	% Seleciona o idioma do documento (conforme pacotes do babel)
+	%\selectlanguage{english}
+	\selectlanguage{brazil}
+	
+	% Retira espaço extra obsoleto entre as frases.
+	\frenchspacing 
+	
+	% ----------------------------------------------------------
+	% ELEMENTOS PRÉ-TEXTUAIS
+	% ----------------------------------------------------------
+	
+	\pretextual
+	
+ 	\include{capa}
+	
+	\include{folharosto}
+	
+	%\include{errata}
+	
+	%\include{folhadeaprovacao}
+	
+	%\include{dedicatoria}
+	
+	%\include{agradecimentos}
+	
+	%\include{epigrafe}
+	
+	%\setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
+	%\include{resumo}
+	
+	\include{sumario}
+	
+	% ----------------------------------------------------------
+	% ELEMENTOS TEXTUAIS
+	% ----------------------------------------------------------
+	\textual
+	
+	%Capitulos
+	\include{ch-introducao}
+	\include{ch-desenvolvimento}
+	\include{ch-tecnologias}
+	\include{ch-aula}
+	\include{ch-conclusao}
+
+	
+	
+	% ----------------------------------------------------------
+	% Finaliza a parte no bookmark do PDF
+	% para que se inicie o bookmark na raiz
+	% e adiciona espaço de parte no Sumário
+	% ----------------------------------------------------------
+	\phantompart
+	
+	%\chapter{Conclusão}
+	
+	
+	% ----------------------------------------------------------
+	% ELEMENTOS PÓS-TEXTUAIS
+	% ----------------------------------------------------------
+	\postextual
+	% ----------------------------------------------------------
+	
+	% ----------------------------------------------------------
+	% Referências bibliográficas
+	% ----------------------------------------------------------
+	
+\end{document}

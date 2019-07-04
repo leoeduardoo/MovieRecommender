@@ -1,0 +1,27 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.7 }
+
+\bibitem[Priscila 20]{orm}
+\abntrefinfo{Priscila}{PRISCILA}{20}
+{PRISCILA. \emph{ORM - Object Relational Mapping - Revista Easy .Net Magazine
+  28}. 20.
+Dispon{\'\i}vel em:
+  \url{https://www.devmedia.com.br/orm-object-relational-mapping-revista-easy-net-magazine-28/27158}.}
+
+\bibitem[Santos 20?]{ide}
+\abntrefinfo{Santos}{SANTOS}{20?}
+{SANTOS, A.~K. dos. Os ide’s (ambientes de desenvolvimento integrado) como
+  ferramentas de trabalho em informatica.
+\emph{Academico(a) do Curso de Ciência da Computação Universidade Federal de
+  Santa Maria (UFSM)}, v.~1, n.~1, p.~1--1, 20?}
+
+\bibitem[Wikipedia 2019]{maven}
+\abntrefinfo{Wikipedia}{WIKIPEDIA}{2019}
+{WIKIPEDIA. \emph{Apache Maven}. 2019.
+Dispon{\'\i}vel em: \url{https://pt.wikipedia.org/wiki/Apache\_Maven}.}
+
+\end{thebibliography}

@@ -1,0 +1,15 @@
+\babel@toc {brazil}{}
+\babel@toc {brazil}{}
+\contentsline {table}{\numberline {1}{\ignorespaces Base de dados fict\IeC {\'\i }cia de dias onde seria realizado um jogo de Golfe.\relax }}{10}{table.caption.4}
+\contentsline {table}{\numberline {2}{\ignorespaces Base de dados com atributo \IeC {\'A}rbitro removido.\relax }}{11}{table.caption.5}
+\contentsline {table}{\numberline {3}{\ignorespaces Base de dados da Tabela~\ref {base_weather_v2} com a limpeza conclu\IeC {\'\i }da.\relax }}{12}{table.caption.6}
+\contentsline {table}{\numberline {4}{\ignorespaces Base de dados conhecida como \textit {Weather Nominal}.\relax }}{13}{table.caption.7}
+\contentsline {table}{\numberline {5}{\ignorespaces Resumo num\IeC {\'e}rico referente aos valores do atributo Aspecto obtido a partir da Tabela~\ref {base_weather}.\relax }}{17}{table.caption.9}
+\contentsline {table}{\numberline {6}{\ignorespaces GI de todos os atributos do exemplo (Tabela~\ref {base_weather}).\relax }}{22}{table.caption.10}
+\contentsline {table}{\numberline {7}{\ignorespaces Subconjunto dos dados referente a Aspecto=ensolarado.\relax }}{22}{table.caption.11}
+\contentsline {table}{\numberline {8}{\ignorespaces Subconjunto dos dados referente a Aspecto=nublado.\relax }}{22}{table.caption.12}
+\contentsline {table}{\numberline {9}{\ignorespaces Subconjunto dos dados referente a Aspecto=chuvoso.\relax }}{23}{table.caption.13}
+\contentsline {table}{\numberline {10}{\ignorespaces SMC entre os exemplos do conjunto Weather (Tabela~\ref {base_weather}) e a nova inst\IeC {\^a}ncia.\relax }}{25}{table.caption.16}
+\contentsline {table}{\numberline {11}{\ignorespaces Matriz de confus\IeC {\~a}o obtida considerando o modelo gerado pelo J48 sob o conjunto de dados da Tabela~\ref {base_weather}.\relax }}{27}{table.caption.17}
+\contentsline {table}{\numberline {12}{\ignorespaces Template padr\IeC {\~a}o de uma matriz de confus\IeC {\~a}o.\relax }}{28}{table.caption.18}
+\contentsline {table}{\numberline {13}{\ignorespaces Vers\IeC {\~a}o modificada da Base Weather(Tabela~\ref {base_weather}).\relax }}{49}{table.caption.28}
